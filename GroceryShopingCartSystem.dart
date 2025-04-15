@@ -7,9 +7,10 @@ void main(){
     print('2.View cart:');
     print('3.Remove item:');
     print('4.View total bill:');
-    print('5.Exit:');
+    print('5.Update quantity and price:');
+    print('6.Exit:');
 
-    print("Enter your choise (1-5):");
+    print("Enter your choise (1-6):");
     String? choise=stdin.readLineSync();
     switch(choise){
       case '1':
@@ -25,8 +26,11 @@ void main(){
       viewTotal(cart);
       break;
       case '5':
+      updateCart(cart);
+      break;
+      case '6':
       print("Thank you for shopping!");
-      return; //here return means is code terminate
+      return; //here, return means is code terminate no more execute the code or while loop
       default:
       print("Invalid option choose. Try agin!");
     }
@@ -69,7 +73,7 @@ void removeItem(List<Map<String,dynamic>>cart){
   if(cart.isEmpty){
       print("your cart is empty! You need to shopping first add item your cart:");
   }
-  print("Enter the item numbe, which want to remove:");
+  print("Enter the item number, which want to remove:");
   int index=int.parse(stdin.readLineSync()!)-1;
   if(index>=0 && index<cart.length){
     print("${cart[index]['name']} is remove!");
@@ -96,4 +100,27 @@ void viewTotal(List<Map<String,dynamic>>cart){
       total=total+totalCost;
     }
     print("Total Bill: ${total.toStringAsFixed(2)}");
+}
+
+
+
+
+void updateCart(List<Map<String,dynamic>>cart){
+   if(cart.isEmpty){
+      print("your cart is empty! You need to shopping first:");
+    }
+
+
+    print("Enter which item number want to update:");
+    int index=int.parse(stdin.readLineSync()!)-1;
+    if(index>=0 && index<cart.length){
+      print("Enter new quantity:");
+     cart[index]['quantity']=double.parse(stdin.readLineSync()!);
+     print("Enter new price:");
+     cart[index]['price']=double.parse(stdin.readLineSync()!);
+     print("${cart[index]['name']} is updated!");
+    }
+
+    else{print("Item number is invalid. Try again!");}
+
 }
