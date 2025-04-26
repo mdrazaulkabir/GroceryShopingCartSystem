@@ -59,7 +59,8 @@ void viewItem(List<Map<String,dynamic>>cart){
   if(cart.isEmpty){
     print("Empty cart! Need Shopping first and Add item your cart:");
   }
-  print("\n...Your Cart...");
+  else{
+    print("\n...Your Cart...");
   for(int i=0;i<cart.length;i++){
     var item=cart[i];
     print("${i+1} Item is: ${item['name']} Quantity:${item['quantity']} Price:${item['price']}");
@@ -67,13 +68,15 @@ void viewItem(List<Map<String,dynamic>>cart){
   // for(var carts in cart){
   //   print("Item name is: ${carts['name']} Quantity:${carts["quantity"]} Price:${carts["price"]}");
   // }
+  }
 }
 
 void removeItem(List<Map<String,dynamic>>cart){
   if(cart.isEmpty){
       print("your cart is empty! You need to shopping first add item your cart:");
   }
-  print("Enter the item number, which want to remove:");
+ else{
+   print("Enter the item number, which want to remove:");
   int index=int.parse(stdin.readLineSync()!)-1;
   if(index>=0 && index<cart.length){
     print("${cart[index]['name']} is remove!");
@@ -82,6 +85,7 @@ void removeItem(List<Map<String,dynamic>>cart){
   else{
     print("Invalid index. Try again!");
   }
+ }
 }
 
 
@@ -92,7 +96,8 @@ void viewTotal(List<Map<String,dynamic>>cart){
     if(cart.isEmpty){
       print("your cart is empty! You need to shopping first:");
     }
-    double total=0;
+   else{
+     double total=0;
     print("\n...Bill Details...");
     for(var item in cart){
       double totalCost=item['quantity']*item['price'];
@@ -100,6 +105,7 @@ void viewTotal(List<Map<String,dynamic>>cart){
       total=total+totalCost;
     }
     print("Total Bill: ${total.toStringAsFixed(2)}");
+   }
 }
 
 
@@ -111,7 +117,8 @@ void updateCart(List<Map<String,dynamic>>cart){
     }
 
 
-    print("Enter which item number want to update:");
+   else{
+     print("Enter which item number want to update:");
     int index=int.parse(stdin.readLineSync()!)-1;
     if(index>=0 && index<cart.length){
       print("Enter new quantity:");
@@ -122,5 +129,6 @@ void updateCart(List<Map<String,dynamic>>cart){
     }
 
     else{print("Item number is invalid. Try again!");}
+   }
 
 }
